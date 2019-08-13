@@ -21,3 +21,12 @@ function printNameAndAge (persona)
 }
 
 printNameAndAge (jama)
+
+function cumpleaños (persona)
+{
+    return {
+        ...persona,
+        edad: persona.edad + 1
+    }
+
+}
