@@ -1,15 +1,23 @@
-var nombre = 'Jama'
-var apellido = 'Ideal'
-var edad = 19
-var peso = '65'
-var nombreMayus = nombre + ' ' + apellido
-var nombreMayusculas = nombreMayus.toUpperCase()
+var jama = {
+    nombre: 'Jama',
+    apellido: 'Ideal',
+    edad: 19,
+    nickname: 'Hector',
+}
 
-console.log
-(
-    'Hola, soy: ' + nombre + ' ' + apellido
-)
+function imprimirNombreUpper ({nombre})
+{
+    console.log(`El nombre es: ${nombre.toUpperCase()}`)
+}
 
-console.log("Tengo " + edad + " años")
+//imprimirNombreUpper (jama)
 
-console.log('Hola, soy: ' + nombreMayusculas)
+function printNameAndAge (persona)
+{
+    console.log
+    (
+        `Hola, me llamo ${persona.nombre} y tengo ${persona.edad} años`
+    )
+}
+
+printNameAndAge (jama)
