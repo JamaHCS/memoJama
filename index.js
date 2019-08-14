@@ -12,7 +12,21 @@ var jama = {
     dj: false,
     }
 
-    function imprimirFunciones (persona)
+var apolo = {
+    nombre: 'Apolo',
+    apellido: 'Cagón',
+    edad: 1,
+    nickname: 'Jama Ideal',
+    ingeniero: false,
+    frontendDeveloper: true,
+    taekwondoin: true,
+    elAmordeTuVida: true,
+    cocinero: false,
+    guitarrista: false,
+    dj: false,
+}
+
+function imprimirFunciones (persona)
     {
         console.log(`${persona.nickname} es:`)
         if(persona.ingeniero)
@@ -43,13 +57,40 @@ var jama = {
         {
             console.log('guitarrista')
         }
-    }
-
-function imprimirMayorEdad (persona)
-{
-    
 }
 
+const MAYORIA_DE_EDAD = 18
 
-imprimirFunciones(jama)
+// function esMayorDeEdad(persona)
+// {
+//     return persona.edad >= MAYORIA_DE_EDAD
+// }
 
+const esMayorDeEdad = ({edad}) => edad >= MAYORIA_DE_EDAD
+const esMenorDeEdad = ({edad}) => edad < MAYORIA_DE_EDAD
+function imprimirMayorEdad (persona)
+{
+    if (esMayorDeEdad(persona))
+    {
+        console.log(`${persona.nombre} es mayor de edad`)
+    }
+    else
+    {
+        console.log(`${persona.nombre} es menor de edad`)
+    }
+
+    permitirAcceso(persona)
+
+}
+
+function permitirAcceso(persona)
+{
+    if(esMenorDeEdad(persona))
+    {
+        console.log('ACCESS DENIED')
+    }
+}
+
+//imprimirFunciones(jama)
+imprimirMayorEdad(jama)
+imprimirMayorEdad(apolo)
