@@ -3,94 +3,47 @@ var jama = {
     apellido: 'Escobedo',
     edad: 19,
     nickname: 'Jama Ideal',
-    ingeniero: false,
-    frontendDeveloper: true,
-    taekwondoin: true,
-    elAmordeTuVida: true,
-    cocinero: false,
-    guitarrista: false,
-    dj: false,
-    }
-
-var apolo = {
-    nombre: 'Apolo',
-    apellido: 'Cagón',
-    edad: 1,
-    nickname: 'Jama Ideal',
-    ingeniero: false,
-    frontendDeveloper: true,
-    taekwondoin: true,
-    elAmordeTuVida: true,
-    cocinero: false,
-    guitarrista: false,
-    dj: false,
+    peso: 65,
 }
+var dias = 0
+const derivadaPeso = 0.300
+const comeMucho = () => Math.random() < 0.3
+const deporte = () => Math.random() < 0.4
 
-function imprimirFunciones (persona)
-    {
-        console.log(`${persona.nickname} es:`)
-        if(persona.ingeniero)
-        {
-            console.log('ingeniero')
-        }
-        if (persona.cocinero)
-        {
-            console.log('cocinero')
-        }
-        if (persona.dj)
-        {
-            console.log('dj')
-        }
-        if (persona.elAmordeTuVida)
-        {
-            console.log('elAmorDeTuVida')
-        }
-        if (persona.frontendDeveloper)
-        {
-            console.log('frontendDeveloper')
-        }
-        if (persona.taekwondoin)
-        {
-            console.log('taekwondoin')
-        }
-        if (persona.guitarrista)
-        {
-            console.log('guitarrista')
-        }
-}
-
-const MAYORIA_DE_EDAD = 18
-
-// function esMayorDeEdad(persona)
-// {
-//     return persona.edad >= MAYORIA_DE_EDAD
-// }
-
-const esMayorDeEdad = ({edad}) => edad >= MAYORIA_DE_EDAD
-const esMenorDeEdad = ({edad}) => edad < MAYORIA_DE_EDAD
-function imprimirMayorEdad (persona)
+function inicio(persona)
 {
-    if (esMayorDeEdad(persona))
+
+    const aumentaDePeso = persona => persona.peso += derivadaPeso
+    const adelgazar = persona => persona.peso -= derivadaPeso
+    const meta = persona.peso - 3
+    console.log(`Al inicio del año, ${persona.nombre}, pesaba ${persona.peso.toFixed(1)} Kg.`)
+
+    for(var i = 1; i <= 365; i++)
     {
-        console.log(`${persona.nombre} es mayor de edad`)
-    }
-    else
-    {
-        console.log(`${persona.nombre} es menor de edad`)
+        var random = Math.random()
+        if(random < 0.25)
+        {
+            aumentaDePeso(persona)
+        }
+        else if (random < 0.5)
+        {
+            adelgazar(persona)
+        }
     }
 
-    permitirAcceso(persona)
+    while (persona.peso > meta)
+    {
+        if(comeMucho())
+        {
+            aumentaDePeso()
+        }
+        if(deporte)
+        {
+            adelgazar()
+        }
+        dias++
+    }
 
+
+    console.log(`pasaron ${dias} dias hasta que ${persona.nombre} adelgazó 3 Kg.`)
 }
-
-function permitirAcceso(persona)
-{
-    if(esMenorDeEdad(persona))
-    {
-        console.log('ACCESS DENIED')
-    }
-}
-
-//imprimirFunciones(jama)
-imprimirMayorEdad(jama)
-imprimirMayorEdad(apolo)
