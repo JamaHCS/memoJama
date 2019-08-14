@@ -42,8 +42,7 @@ var personas = [
     psicosis,
     lalo
 ]
+const old = ({edad}) => edad > 20
 
-for(var i = 0; i < personas.length; i++){
-    var persona = personas[i]
-    console.log(`${persona.nombre} tiene ${persona.edad} años`)
-}
+var personasViejas = personas.filter(old)
+console.log(personasViejas)
