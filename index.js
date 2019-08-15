@@ -1,11 +1,13 @@
-setTimeout(function(){
-    console.log(`fin`)
-},1000)
+const apiUrl = 'https://swapi.co/api/'
 
-function hola(){
-    for(var i = 0; i< 100000 ; i++){
-    console.log(i)
-    }
+const peopleUrl = 'people/:id'
+const lukeUrl = `${apiUrl}${peopleUrl.replace(':id', 1)}`
+const op = { crossDomain: true }
+
+function obtenerPersonaje(id){
+    const
 }
 
-hola()
+$.get(lukeUrl,op, function(luke){
+    console.log(`Hola, yo soy, ${luke.name}`)
+})
