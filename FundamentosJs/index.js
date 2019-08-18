@@ -11,8 +11,9 @@ const onError = (id) => {
 }
 getCharacter(1).then((character) => {
     console.log(`Hola, yo soy ${character.name}`)
-}).catch((id) => {
-    onError(id)
 })
+.catch(onError)
+
+
 
 //comment
