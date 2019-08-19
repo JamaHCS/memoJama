@@ -6,14 +6,27 @@ const getCharacter = (id) => new Promise((resolve, rejected) => {
         .then((response) => resolve(response.json()))
         .catch(() => rejected(id))
 })
+
 const onError = (id) => {
     console.log(`Hubo un error con el personaje ${id}`)
 }
-getCharacter(1).then((character) => {
-    console.log(`Hola, yo soy ${character.name}`)
-})
-.catch(onError)
+
+async function obtenerPErsonajes(){
+    var ids = [1,2,3,4,5,6,7]
+    var promesas = ids.map(id => getCharacter(id))
+    try {
+        var personajes = await Promise.all(promesas)
+        console.log(personajes)
+    }
+    catch (id){
+        onError(id)
+    }
+}
 
 
+obtenerPErsonajes()
 
-//comment
+//getCharacter(1).then((character) => {
+//    console.log(`Hola, yo soy ${character.name}`)
+//})
+//.catch(onError)
