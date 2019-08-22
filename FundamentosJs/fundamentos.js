@@ -5,6 +5,7 @@ const verde = document.getElementById('verde')
 const btnEmpezar = document.getElementById('btnEmpezar')
 const ultimoNivel = 10
 
+
 class Juego {
     constructor() {
         this.inicializar()
@@ -17,7 +18,7 @@ class Juego {
     inicializar() {
         this.siguienteNivel = this.siguienteNivel.bind(this)
         this.elegirColor = this.elegirColor.bind(this)
-        btnEmpezar.classList.add('hide')
+        this.toggleBtnEmpezar()
         this.nivel = 1
         this.colores = {
             celeste,
@@ -26,6 +27,14 @@ class Juego {
             verde
         }
     }
+    
+toggleBtnEmpezar(){
+    if(btnEmpezar.classList.contains('hide')){
+        btnEmpezar.classList.remove('hide')
+    }else{
+        btnEmpezar.classList.add('hide')
+    }
+}
 
     generarSecuencia() {
         this.secuencia = new Array(ultimoNivel).fill(0).map(n => Math.floor(Math.random() * 4))
@@ -103,17 +112,31 @@ class Juego {
                 this.nivel++
                 this.eliminarClick
                 if(this.nivel === (ultimoNivel + 1)){
-                    // Ganó!
+                    this.gano()
                 } else{
                     setTimeout(this.siguienteNivel, 1300)
                 }
             }
         }else{
-            // perdió !
+            this.perdio()
         }
-
-
     }
+
+    gano(){
+        swal('MemoJama','Ganaste!!','success')
+            .then(()=> {
+                this.inicializar()
+            })
+    }
+
+    perdio(){
+        swal('MemoJama','Perro tonto, perdiste.','error')
+            .then(()=> {
+                this.eliminarClick()
+                this.inicializar()
+            })
+    }
+
 
 }
 
@@ -121,3 +144,5 @@ class Juego {
 function empezarJuego() {
     window.juego = new Juego()
 }
+
+//Bug. El pedo está en que la secuencia solo se va expandiendo y no es random con cada iteracion
